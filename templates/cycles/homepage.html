@@ -1,0 +1,27 @@
+
+{% extends 'cycles/main.html' %}
+{% load static %}
+{% block content %}
+{% for cat in categories %}
+<h2 class= "pl-5" style = "color : #E40203 ; text-transform : uppercase">{{cat.name}}</h2><hr>
+	<div class="row">
+		{% for cycle in cycles %}
+		{% if cat.name == cycle.category.name %}
+		<div class="col-lg-4">
+			<img class="thumbnail" src="/media/{{cycle.cycle_img_main}}">
+			<div class="box-element product">
+				<h6><strong>{{cycle.model_name}}</strong></h6>
+				<hr>
+
+				<button data-product="{{cycle.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+
+				<a class="btn btn-outline-success" href="/cycles/detail/{{cycle.id}}">View</a>
+			<!--	<h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4> -->
+
+			</div>
+		</div>
+		{% endif%}
+		{% endfor %}
+	</div>
+ {% endfor %}
+{% endblock content %}
